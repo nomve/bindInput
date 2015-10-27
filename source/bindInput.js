@@ -3,15 +3,15 @@ import $ from 'jquery';
 /*
  * plugin default options
  */
-var pluginName = 'bindInput',
-    defaults = {
-    };
+export const PLUGIN_NAME = 'bindInput';
+const PLUGIN_DEFAULTS = {
+        };
 
 /*
  * helper log function
  */
 function log( msg ) {
-    var name = '[' + pluginName + ']: ';
+    var name = '[' + PLUGIN_NAME + ']: ';
     var text = name + msg;
     console.log(text);
 }
@@ -26,7 +26,7 @@ function BindInput( element, options ) {
     }
 
     this.element$ = $(element);
-    this.options = $.extend( {}, defaults, options);
+    this.options = $.extend( {}, PLUGIN_DEFAULTS, options);
 
     this.init();
 }
@@ -114,11 +114,11 @@ this.receiver$.children('option')
 };
 
 
-$.fn[pluginName] = function ( options ) {
+$.fn[PLUGIN_NAME] = function ( options ) {
 
     return this.each( function() {
 
-        if ( ! $.data(this, 'plugin_' + pluginName) ) {
+        if ( ! $.data(this, 'plugin_' + PLUGIN_NAME) ) {
             /*
              * field type
              */
@@ -143,7 +143,7 @@ $.fn[pluginName] = function ( options ) {
                 return true;
             }
 
-            $.data( this, 'plugin_' + pluginName, pluginObj );
+            $.data( this, 'plugin_' + PLUGIN_NAME, pluginObj );
         }
 
         return true;
