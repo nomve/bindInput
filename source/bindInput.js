@@ -116,6 +116,18 @@ this.receiver$.children('option')
 
 
 $.fn[PLUGIN_NAME] = function ( options ) {
+    /*
+     * plugin object to instantiate
+     */
+    var pluginObj;
+    /**
+     * merge options with defaults
+     */
+    var settings = $.extend( {}, PLUGIN_DEFAULTS, options );
+    /*
+     * instantiate logger for each 
+     */
+    var logger = Logger( settings.log );
 
     return this.each( function() {
 
@@ -125,18 +137,6 @@ $.fn[PLUGIN_NAME] = function ( options ) {
              */
             var type = (this.tagName !== 'INPUT' ? this.tagName : this.type)
                             .toLowerCase();
-            /*
-             * plugin object to instantiate
-             */
-            var pluginObj;
-            /**
-             * merge options with defaults
-             */
-            var settings = $.extend( {}, PLUGIN_DEFAULTS, options );
-            /*
-             * instantiate logger for each 
-             */
-            var logger = Logger( settings.log );
             /*
              * instantiate the right object
              */

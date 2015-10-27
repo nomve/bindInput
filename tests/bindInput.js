@@ -19,6 +19,19 @@ QUnit.test(
     }
 );
 
+QUnit.test(
+    'should attach separate plugin object per element',
+    assert => {
+        var testElements = $('<select></select><select></select>').bindInput();
+        let select1 = $(testElements[0]);
+        let select2 = $(testElements[1]);
+        
+        assert.notOk(
+            select1.data(bindInput.PLUGIN_OBJECT_KEY) === select2.data(bindInput.PLUGIN_OBJECT_KEY)
+        );
+    }
+);
+
 // TODO: refactor and create a list of elements that are supported
 QUnit.test(
     'should not initialize the plugin on a non-supported element',
