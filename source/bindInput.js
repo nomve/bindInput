@@ -129,20 +129,20 @@ $.fn[PLUGIN_NAME] = function ( options ) {
      */
     var logger = Logger( settings.log );
 
-    return this.each( function() {
+    return this.each( function(index, element) {
 
-        if ( ! $.data(this, 'plugin_' + PLUGIN_NAME) ) {
+        if ( ! $.data(element, PLUGIN_OBJECT_KEY) ) {
             /*
              * field type
              */
-            var type = (this.tagName !== 'INPUT' ? this.tagName : this.type)
+            var type = (element.tagName !== 'INPUT' ? element.tagName : element.type)
                             .toLowerCase();
             /*
              * instantiate the right object
              */
             switch( type ) {
                 case 'select':
-                    pluginObj = new SelectField( this, settings, logger );
+                    pluginObj = new SelectField( element, settings, logger );
                     break;
                 case 'default':
                     logger.log('Trying to set plugin on a non-supported element');
@@ -152,7 +152,7 @@ $.fn[PLUGIN_NAME] = function ( options ) {
                 return true;
             }
 
-            $.data( this, 'plugin_' + PLUGIN_NAME, pluginObj );
+            $.data( element, PLUGIN_OBJECT_KEY, pluginObj );
         }
 
         return true;
