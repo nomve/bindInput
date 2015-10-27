@@ -33,7 +33,7 @@ QUnit.test(
     'should only log information to the console when politely asked',
     assert => {
         
-        var consoleSpy = sinon.spy( console, 'log' );
+        var consoleSpy = sinon.stub( console, 'log' );
         $('<select></select>').bindInput();
         
         assert.ok( consoleSpy.callCount === 0 );
@@ -42,5 +42,11 @@ QUnit.test(
             log: true
         });
         assert.ok( consoleSpy.callCount === 1 );
+        
+        $('<select></select>').bindInput({
+            log: false
+        });
+        assert.ok( consoleSpy.callCount === 1 );
+        
     }
 );

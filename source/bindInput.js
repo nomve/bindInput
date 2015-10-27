@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import Logger from './helpers/logger';
 
 /*
  * plugin name to register, ie $.fn[PLUGIN_NAME]
@@ -12,40 +13,21 @@ export const PLUGIN_OBJECT_KEY = `plugin_${PLUGIN_NAME}`;
  * plugin default options
  */
 const PLUGIN_DEFAULTS = {
-        };
-/*
- * 
- */
-var logging = false; 
-
-/*
- * helper log function
- */
-function log( msg ) {
-    
-    if ( ! logging ) {
-        return;
-    }
-    var name = '[' + PLUGIN_NAME + ']: ';
-    var text = name + msg;
-    console.log(text);
-}
-
+    log: false
+};
 /*
  * plugin constructor
  */
-function BindInput( element, options ) {
+function BindInput( element, options, logger ) {
 
     if ( element === undefined ) {
         return;   
     }
 
     this.element$ = $(element);
-    this.options = $.extend( {}, PLUGIN_DEFAULTS, options);
+    this.options = options;
     
-    if ( this.options.log ) {
-        logging = true;
-    }
+    this.logger = logger;
 
     this.init();
 }
@@ -59,7 +41,7 @@ BindInput.prototype.init = function () {
      * receiver field is mandatory
      */
     if ( ! this.options.receiver ) {
-        log('You must bind an input to some other receiver in options');
+        this.logger.log('You must bind an input to some other receiver in options');
         return false;
     }
 
@@ -99,8 +81,8 @@ BindInput.prototype.setListeners = function() {
 /*
  * select
  */
-var SelectField = function( element, options ) {
-    BindInput.call( this, element, options );
+var SelectField = function( element, options, logger ) {
+    BindInput.call( this, element, options, logger );
 };
 SelectField.prototype = new BindInput();
 /*
@@ -147,18 +129,26 @@ $.fn[PLUGIN_NAME] = function ( options ) {
              * plugin object to instantiate
              */
             var pluginObj;
+            /**
+             * merge options with defaults
+             */
+            var settings = $.extend( {}, PLUGIN_DEFAULTS, options );
+            /*
+             * instantiate logger for each 
+             */
+            var logger = Logger( settings.log );
             /*
              * instantiate the right object
              */
             switch( type ) {
                 case 'select':
-                    pluginObj = new SelectField( this, options );
+                    pluginObj = new SelectField( this, settings, logger );
                     break;
                 case 'default':
+                    logger.log('Trying to set plugin on a non-supported element');
                     pluginObj = null;
             }
             if ( ! pluginObj ) {
-                log('Trying to set plugin on a non-supported element');
                 return true;
             }
 
