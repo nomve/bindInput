@@ -13,11 +13,19 @@ export const PLUGIN_OBJECT_KEY = `plugin_${PLUGIN_NAME}`;
  */
 const PLUGIN_DEFAULTS = {
         };
+/*
+ * 
+ */
+var logging = false; 
 
 /*
  * helper log function
  */
 function log( msg ) {
+    
+    if ( ! logging ) {
+        return;
+    }
     var name = '[' + PLUGIN_NAME + ']: ';
     var text = name + msg;
     console.log(text);
