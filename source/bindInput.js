@@ -1,9 +1,16 @@
 import $ from 'jquery';
 
 /*
- * plugin default options
+ * plugin name to register, ie $.fn[PLUGIN_NAME]
  */
 export const PLUGIN_NAME = 'bindInput';
+/*
+ * data key of object to access, ie $().data(PLUGIN_OBJECT_KEY);
+ */
+export const PLUGIN_OBJECT_KEY = `plugin_${PLUGIN_NAME}`;
+/*
+ * plugin default options
+ */
 const PLUGIN_DEFAULTS = {
         };
 
