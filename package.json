@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "karma start --single-run",
-    "build": "browserify source/plugin.js -t babelify --outfile build/bindInput.js"
+    "build": "browserify source/bindInput.js -x jquery -t babelify --outfile build/bindInput.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,8 @@
   "devDependencies": {
     "babelify": "^6.4.0",
     "browserify": "^12.0.0",
+    "browserify-shim": "^3.8.11",
+    "jquery": "^2.1.4",
     "karma": "^0.13.14",
     "karma-browserify": "^4.4.0",
     "karma-jshint-preprocessor": "0.0.6",
