@@ -44,8 +44,9 @@ THE SOFTWARE.
      */
     function BindInput( element, options ) {
 
-        if ( element === undefined )
-            return;
+        if ( element === undefined ) {
+            return;   
+        }
 
         this.element$ = $(element);
         this.options = $.extend( {}, defaults, options);
@@ -77,12 +78,12 @@ THE SOFTWARE.
      */
     BindInput.prototype.setReceiver = function() {
 
-        this.receiver$ = this.options.receiver instanceof jQuery
-                            ? this.options.receiver
-                            : $(this.options.receiver);
+        this.receiver$ = this.options.receiver instanceof jQuery ?
+                                this.options.receiver :
+                                $(this.options.receiver);
 
         return this;
-    }
+    };
     /*
      * setting field listeners
      */
@@ -95,7 +96,7 @@ THE SOFTWARE.
          * and for every change
          */
         this.element$.on( 'change', $.proxy(this.matchFields, this) );
-    }
+    };
     /*
      * define new constructors for each form type
      */
@@ -111,12 +112,14 @@ THE SOFTWARE.
      */
     SelectField.prototype.matchFields = function() {
 
-        if ( ! this.receiver$ )
-	    return false;
+        if ( ! this.receiver$ ) {
+	       return false;   
+        }
 
 	var current = this.element$.children('option').filter( ':selected' );
-	if ( ! current )
-	    return false;
+	if ( ! current ) {
+	    return false;   
+    }
 
 	/*
 	 * set the same option on receiver
@@ -126,12 +129,12 @@ THE SOFTWARE.
 	     * find the matching option
 	     */
 	    .filter( function() {
-		return $(this).text() === current.text()
+            return $(this).text() === current.text();
 	    })
 	    .prop( 'selected', true );
 
         return this;
-    }
+    };
 
 
     $.fn[pluginName] = function ( options ) {
@@ -142,7 +145,7 @@ THE SOFTWARE.
                 /*
                  * field type
                  */
-                var type = (this.tagName != 'INPUT' ? this.tagName : this.type)
+                var type = (this.tagName !== 'INPUT' ? this.tagName : this.type)
                                 .toLowerCase();
                 /*
                  * plugin object to instantiate
@@ -168,6 +171,6 @@ THE SOFTWARE.
 
             return true;
         });
-    }
+    };
 
 })(jQuery);
