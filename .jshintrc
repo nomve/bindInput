@@ -9,5 +9,10 @@
 	"undef": true,
 	"unused": true,
 	"node": true,
-    "esnext": true
+    "esnext": true,
+    "jquery": true,
+    "qunit": true,
+    "globals": {
+        "console": true
+    }
 }
