@@ -1,0 +1,33 @@
+{
+  "name": "bindInput",
+  "version": "0.0.0",
+  "homepage": "https://github.com/nomve/bindInput",
+  "authors": [
+    "Goran Košutić <kosutic.goran@gmail.com>"
+  ],
+  "description": "Small jQuery plugin to connect fields of different form, in order to make changes in all fields simultaneously",
+  "main": "build/bindInput.js",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "jquery",
+    "plugin",
+    "form",
+    "fields"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.4"
+  }
+}
