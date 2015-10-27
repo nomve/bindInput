@@ -34,6 +34,7 @@
     "karma-mocha-reporter": "^1.1.1",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-qunit": "^0.1.7",
+    "karma-sinon": "^1.0.4",
     "phantomjs": "^1.9.18",
     "qunitjs": "^1.19.0",
     "sinon": "^1.17.2"
