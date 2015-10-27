@@ -28,3 +28,19 @@ QUnit.test(
                      'plugin initialized on a non-compatible element' );
     }
 );
+
+QUnit.test(
+    'should only log information to the console when politely asked',
+    assert => {
+        
+        var consoleSpy = sinon.spy( console, 'log' );
+        $('<select></select>').bindInput();
+        
+        assert.ok( consoleSpy.callCount === 0 );
+        
+        $('<select></select>').bindInput({
+            log: true
+        });
+        assert.ok( consoleSpy.callCount === 1 );
+    }
+);

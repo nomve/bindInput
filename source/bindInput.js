@@ -42,6 +42,10 @@ function BindInput( element, options ) {
 
     this.element$ = $(element);
     this.options = $.extend( {}, PLUGIN_DEFAULTS, options);
+    
+    if ( this.options.log ) {
+        logging = true;
+    }
 
     this.init();
 }
