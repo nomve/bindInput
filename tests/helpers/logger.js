@@ -49,3 +49,14 @@ QUnit.test(
         assert.ok( consoleSpy.calledOnce, 'logged after it should have been switched off' );
     }
 );
+
+QUnit.test(
+    'different instances of logger do not influence each other',
+    assert => {
+        var newLogger = logger(true);
+        loggerObj.log(1);
+        newLogger.log(2);
+        
+        assert.ok( consoleSpy.calledOnce );
+    }
+);
