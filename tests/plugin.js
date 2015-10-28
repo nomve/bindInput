@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import * as bindInput from '../source/bindInput';
+import * as bindInput from '../source/plugin';
 
 var sinonSandbox;
 
-QUnit.module( 'bindInput', {
+QUnit.module( 'plugin', {
     beforeEach: () => sinonSandbox = sinon.sandbox.create(),
     afterEach: () => sinonSandbox.restore()
 });
