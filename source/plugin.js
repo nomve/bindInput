@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import logger from './helpers/logger';
-import BindInput from './BindInput';
+import SelectField from './types/SelectField';
 
 /*
  * plugin name to register, ie $.fn[PLUGIN_NAME]
@@ -16,45 +16,6 @@ export const PLUGIN_OBJECT_KEY = `plugin_${PLUGIN_NAME}`;
 const PLUGIN_DEFAULTS = {
     log: false
 };
-/*
- * define new constructors for each form type
- */
-/*
- * select
- */
-var SelectField = function( element, options, logger ) {
-    BindInput.call( this, element, options, logger );
-};
-SelectField.prototype = new BindInput();
-/*
- * the actual setting function for the select
- */
-SelectField.prototype.matchFields = function() {
-
-    if ( ! this.receiver$ ) {
-       return false;   
-    }
-
-    var current = this.element$.children('option').filter( ':selected' );
-    if ( ! current ) {
-        return false;   
-    }
-
-    /*
-     * set the same option on receiver
-     */
-    this.receiver$.children('option')
-    /*
-     * find the matching option
-     */
-    .filter( function() {
-        return $(this).text() === current.text();
-    })
-    .prop( 'selected', true );
-
-    return this;
-};
-
 
 $.fn[PLUGIN_NAME] = function ( options ) {
     /*
