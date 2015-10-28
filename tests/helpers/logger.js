@@ -42,7 +42,7 @@ QUnit.test(
         
         loggerObj.on();
         loggerObj.log('should be logged');
-        assert.ok( consoleSpy.withArgs('should be logged'), 'console not called when it should have been' );
+        assert.ok( consoleSpy.calledWith('should be logged'), 'console not called when it should have been' );
         
         loggerObj.off();
         loggerObj.log('something');
