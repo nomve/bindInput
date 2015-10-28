@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import Logger from './helpers/logger';
+import logger from './helpers/logger';
 
 /*
  * plugin name to register, ie $.fn[PLUGIN_NAME]
@@ -127,7 +127,7 @@ $.fn[PLUGIN_NAME] = function ( options ) {
     /*
      * instantiate logger for each 
      */
-    var logger = Logger( settings.log );
+    var loggerObj = logger( settings.log );
 
     return this.each( function(index, element) {
 
@@ -142,10 +142,10 @@ $.fn[PLUGIN_NAME] = function ( options ) {
              */
             switch( type ) {
                 case 'select':
-                    pluginObj = new SelectField( element, settings, logger );
+                    pluginObj = new SelectField( element, settings, loggerObj );
                     break;
                 case 'default':
-                    logger.log('Trying to set plugin on a non-supported element');
+                    loggerObj.log('Trying to set plugin on a non-supported element');
                     pluginObj = null;
             }
             if ( ! pluginObj ) {

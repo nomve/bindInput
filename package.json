@@ -2,10 +2,12 @@
   "name": "bindInput",
   "version": "0.0.1",
   "description": "Small jQuery plugin to connect fields of different form, in order to make changes in all fields simultaneously",
-  "main": "index.js",
+  "main": "build/bindInput.js",
   "scripts": {
+    "prepublish": "npm run compile",
+    "compile": "babel -m common -d build source",
     "test": "karma start --single-run",
-    "build": "browserify source/bindInput.js -t babelify -x jquery -o build/bindInput.js"
+    "build": "babel -m umd source -o build/bindInput.js"
   },
   "repository": {
     "type": "git",
@@ -24,8 +26,8 @@
   },
   "homepage": "https://github.com/nomve/bindInput",
   "devDependencies": {
+    "babel": "^5.8.29",
     "babelify": "^6.4.0",
-    "browserify": "^12.0.0",
     "jquery": "^2.1.4",
     "karma": "^0.13.14",
     "karma-browserify": "^4.4.0",
