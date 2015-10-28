@@ -25,10 +25,12 @@
     "url": "https://github.com/nomve/bindInput/issues"
   },
   "homepage": "https://github.com/nomve/bindInput",
+  "dependencies": {
+    "jquery": "^2.1.4"  
+  },
   "devDependencies": {
     "babel": "^5.8.29",
     "babelify": "^6.4.0",
-    "jquery": "^2.1.4",
     "karma": "^0.13.14",
     "karma-browserify": "^4.4.0",
     "karma-jshint-preprocessor": "0.0.6",
