@@ -35,15 +35,15 @@ SelectField.prototype.matchFields = function() {
        return false;   
     }
 
-var current = this.element$.children('option').filter( ':selected' );
-if ( ! current ) {
-    return false;   
-}
+    var current = this.element$.children('option').filter( ':selected' );
+    if ( ! current ) {
+        return false;   
+    }
 
-/*
- * set the same option on receiver
- */
-this.receiver$.children('option')
+    /*
+     * set the same option on receiver
+     */
+    this.receiver$.children('option')
     /*
      * find the matching option
      */

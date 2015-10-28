@@ -15,6 +15,10 @@ export default function BindInput( element, options, loggerObj ) {
     
     this.element$ = $(element);
     this.options = options;
+    // needs to be implemented by the extending constructor
+    this.matchField = function () {
+        throw new Error('extending class did not implement the matchField method');
+    };
     
     this.loggerObj = loggerObj;
 
@@ -45,7 +49,7 @@ BindInput.prototype.init = function () {
  */
 BindInput.prototype.setReceiver = function() {
 
-    this.receiver$ = this.options.receiver instanceof jQuery ?
+    this.receiver$ = this.options.receiver instanceof $ ?
                             this.options.receiver :
                             $(this.options.receiver);
 
