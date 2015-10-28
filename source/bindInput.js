@@ -148,13 +148,9 @@ $.fn[PLUGIN_NAME] = function ( options ) {
                     loggerObj.log('Trying to set plugin on a non-supported element');
                     pluginObj = null;
             }
-            if ( ! pluginObj ) {
-                return true;
+            if ( pluginObj ) {
+                $.data( element, PLUGIN_OBJECT_KEY, pluginObj );
             }
-
-            $.data( element, PLUGIN_OBJECT_KEY, pluginObj );
         }
-
-        return true;
     });
 };
