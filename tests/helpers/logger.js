@@ -15,15 +15,6 @@ QUnit.module( 'Logger', {
 });
 
 QUnit.test(
-    'should be defined',
-    assert => {
-        
-        assert.ok( $.isFunction(Logger), 'imported module not a function' );
-        assert.ok( $.isPlainObject(logger), 'could not create a logger object' );
-    } 
-);
-
-QUnit.test(
     'should not log by default',
     assert => {
         logger.log('should not be logged');
