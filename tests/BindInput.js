@@ -7,5 +7,6 @@ QUnit.test(
     'should be defined',
     assert => {
         assert.ok( $.isFunction(BindInput), 'module does not exist' );
+        assert.ok( typeof new BindInput() === 'object', 'could not instantiate BindInput object' );
     }
 );

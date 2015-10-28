@@ -1,18 +1,22 @@
-import $ from 'jQuery';
+import $ from 'jquery';
+import logger from './helpers/logger';
 
 /*
  * plugin constructor
  */
-export default function BindInput( element, options, logger ) {
+export default function BindInput( element, options, loggerObj ) {
 
-    if ( element === undefined ) {
+    if ( typeof element === 'undefined' ) {
         return;   
     }
 
+    options = options || {};
+    loggerObj = loggerObj || logger();
+    
     this.element$ = $(element);
     this.options = options;
     
-    this.logger = logger;
+    this.loggerObj = loggerObj;
 
     this.init();
 }
@@ -26,7 +30,7 @@ BindInput.prototype.init = function () {
      * receiver field is mandatory
      */
     if ( ! this.options.receiver ) {
-        this.logger.log('You must bind an input to some other receiver in options');
+        this.loggerObj.log('You must bind an input to some other receiver in options');
         return false;
     }
 
