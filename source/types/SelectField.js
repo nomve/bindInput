@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import BindInput from '../BindInput';
 
 export default function SelectField( element, options, logger ) {
@@ -11,7 +12,7 @@ SelectField.prototype = new BindInput();
 SelectField.prototype.matchFields = function() {
 
     if ( ! this.receiver$ ) {
-       return false;   
+       return this;   
     }
 
     var current = this.element$.children('option').filter( ':selected' );
