@@ -1,6 +1,13 @@
 import $ from 'jquery';
 import * as bindInput from '../source/bindInput';
 
+var sinonSandbox;
+
+QUnit.module( 'bindInput', {
+    beforeEach: () => sinonSandbox = sinon.sandbox.create(),
+    afterEach: () => sinonSandbox.restore()
+});
+
 QUnit.test(
     'should be defined',
     assert => assert.ok( bindInput, 'plugin file does not exist' )
@@ -46,7 +53,7 @@ QUnit.test(
     'should only log information to the console when politely asked',
     assert => {
         
-        var consoleSpy = sinon.stub( console, 'log' );
+        var consoleSpy = sinonSandbox.stub( console, 'log' );
         $('<select></select>').bindInput();
         
         assert.ok( consoleSpy.callCount === 0 );

@@ -1,4 +1,4 @@
-export default function logger(shouldLog) {
+export default function Logger(shouldLog) {
     
     shouldLog = shouldLog || false;
     
