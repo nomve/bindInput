@@ -14,8 +14,7 @@ QUnit.module( 'SelectField', {
         sender$ = receiver$ = $(`
             <select>
                 <option value="">--</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
+                <option value="1">option 1</option>
             </select>
         `);
         sender$.bindInput({
@@ -37,5 +36,25 @@ QUnit.test(
     assert => {
         assertValueChange(assert, 1);
         assertValueChange(assert, "");
+    }
+);
+
+QUnit.test(
+    'should adjust the receiver field by options text if sender option missing value',
+    assert => {
+        var optionText = "option 1";
+        sender$ = $(`
+            <select>
+                <option value="">--</option>
+                <option>${optionText}</option>
+            </select>
+        `);
+        sender$.bindInput({
+            receiver: receiver$
+        });
+        
+        sender$.children().eq(1).prop( 'selected', true );
+        assert.equal( sender$.val(), optionText );
+        assert.equal( receiver$.val(), 1 );
     }
 );
