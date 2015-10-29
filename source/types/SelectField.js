@@ -5,7 +5,7 @@ export default function SelectField( element, options, logger ) {
     BindInput.call( this, element, options, logger );
 }
 
-SelectField.prototype = new BindInput();
+SelectField.prototype = Object.create(BindInput.prototype);
 /*
  * the actual setting function for the select
  */
