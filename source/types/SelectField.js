@@ -14,23 +14,10 @@ SelectField.prototype.matchFields = function() {
     if ( ! this.receiver$ ) {
        return this;   
     }
-
-    var current = this.element$.children('option').filter( ':selected' );
-    if ( ! current ) {
-        return false;   
-    }
-
     /*
      * set the same option on receiver
      */
-    this.receiver$.children('option')
-    /*
-     * find the matching option
-     */
-    .filter( function() {
-        return $(this).text() === current.text();
-    })
-    .prop( 'selected', true );
+    this.receiver$.val( this.element$.val() );
 
     return this;
 };

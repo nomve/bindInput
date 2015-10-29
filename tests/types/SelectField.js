@@ -27,10 +27,11 @@ QUnit.test(
     }
 );
 
-//QUnit.test(
-//    'should adjust the receiver field when element adjusted',
-//    assert => {
-//        sender$.val(1);
-//        assert.ok( receiver$.val() === 1, 'receiver value was not properly set');
-//    }
-//);
+QUnit.test(
+    'should adjust the receiver field by value when element adjusted',
+    assert => {
+        var value = "1";
+        sender$.val(value);
+        assert.equal( receiver$.val(), value, 'receiver value was not properly set');
+    }
+);
