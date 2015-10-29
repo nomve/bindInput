@@ -4,6 +4,11 @@ import SelectField from '../../source/types/SelectField';
 var sender$,
     receiver$;
 
+function assertValueChange(assert, newValue) {
+    sender$.val(newValue);
+    assert.equal( receiver$.val(), newValue, 'receiver value was not properly set');
+}
+
 QUnit.module( 'SelectField', {
     beforeEach: () => {
         sender$ = receiver$ = $(`
@@ -30,8 +35,7 @@ QUnit.test(
 QUnit.test(
     'should adjust the receiver field by value when element adjusted',
     assert => {
-        var value = "1";
-        sender$.val(value);
-        assert.equal( receiver$.val(), value, 'receiver value was not properly set');
+        assertValueChange(assert, 1);
+        assertValueChange(assert, "");
     }
 );
