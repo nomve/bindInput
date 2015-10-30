@@ -83,3 +83,43 @@ QUnit.test(
         assert.equal( sender$.val(), receiver$.val(), 'receiver value was not set on initial load' );
     }
 );
+
+QUnit.test(
+    'should adjust input fields as well',
+    assert => {
+        sender$ = $(`
+            <select>
+                <option value="">--</option>
+                <option value="1">option 1</option>
+            </select>
+        `);
+        receiver$ = $('<input />');
+        sender$.bindInput({
+            receiver: receiver$
+        });
+        
+        sender$.val(1);
+        sender$.trigger('change');
+        assert.equal( sender$.val(), receiver$.val() );
+    }
+);
+
+QUnit.test(
+    'should adjust textareas as well',
+    assert => {
+        sender$ = $(`
+            <select>
+                <option value="">--</option>
+                <option value="1">option 1</option>
+            </select>
+        `);
+        receiver$ = $('<textarea />');
+        sender$.bindInput({
+            receiver: receiver$
+        });
+        
+        sender$.val(1);
+        sender$.trigger('change');
+        assert.equal( sender$.val(), receiver$.val() );
+    }
+);
