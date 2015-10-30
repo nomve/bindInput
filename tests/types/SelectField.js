@@ -10,23 +10,26 @@ function assertValueChange(assert, newValue) {
     assert.equal( receiver$.val(), newValue, 'receiver value was not properly set');
 }
 
+function setupSenderAndReceiver(sender, receiver) {
+    if ( sender ) {
+        sender$ = sender;
+    }
+    if ( receiver ) {
+        receiver$ = receiver;
+    }
+    sender$.bindInput({
+        receiver: receiver$
+    });
+}
+
 QUnit.module( 'SelectField', {
     beforeEach: () => {
-        sender$ = $(`
-            <select>
-                <option value="">--</option>
-                <option value="1">option 1</option>
-            </select>
-        `);
-        receiver$ = $(`
-            <select>
-                <option value="">--</option>
-                <option value="1">option 1</option>
-            </select>
-        `);
-        sender$.bindInput({
-            receiver: receiver$
-        });
+        var testSelect = `
+                <select>
+                    <option value="">--</option>
+                    <option value="1">option 1</option>
+                </select>`;
+        setupSenderAndReceiver( $(testSelect), $(testSelect) );
     }
 });
 
@@ -50,15 +53,13 @@ QUnit.test(
     'should adjust the receiver field by options text if sender option missing value',
     assert => {
         var optionText = "option 1";
-        sender$ = $(`
-            <select>
-                <option value="">--</option>
-                <option>${optionText}</option>
-            </select>
-        `);
-        sender$.bindInput({
-            receiver: receiver$
-        });
+        setupSenderAndReceiver( $(`
+                <select>
+                    <option value="">--</option>
+                    <option>${optionText}</option>
+                </select>
+            `)
+        );
         
         sender$.children().eq(1).prop( 'selected', true );
         sender$.trigger('change');
@@ -70,15 +71,14 @@ QUnit.test(
 QUnit.test(
     'should adjust the receiver field on initial load',
     assert => {
-        sender$ = $(`
-            <select>
-                <option value="">--</option>
-                <option value="1" selected="selected">option 1</option>
-            </select>
-        `);
-        sender$.bindInput({
-            receiver: receiver$
-        });
+        setupSenderAndReceiver( $(`
+                <select>
+                    <option value="">--</option>
+                    <option value="1" selected="selected">option 1</option>
+                </select>
+            `)
+        );
+        
         assert.equal( sender$.val(), '1' );
         assert.equal( sender$.val(), receiver$.val(), 'receiver value was not set on initial load' );
     }
@@ -87,19 +87,19 @@ QUnit.test(
 QUnit.test(
     'should adjust input fields as well',
     assert => {
-        sender$ = $(`
-            <select>
-                <option value="">--</option>
-                <option value="1">option 1</option>
-            </select>
-        `);
-        receiver$ = $('<input />');
-        sender$.bindInput({
-            receiver: receiver$
-        });
+        setupSenderAndReceiver(
+            $(`
+                <select>
+                    <option value="">--</option>
+                    <option value="1">option 1</option>
+                </select>
+            `),
+            $('<input />')
+        );
         
         sender$.val(1);
         sender$.trigger('change');
+        assert.ok( receiver$.is('input'), 'receiver is not set as input' );
         assert.equal( sender$.val(), receiver$.val() );
     }
 );
@@ -107,19 +107,19 @@ QUnit.test(
 QUnit.test(
     'should adjust textareas as well',
     assert => {
-        sender$ = $(`
-            <select>
-                <option value="">--</option>
-                <option value="1">option 1</option>
-            </select>
-        `);
-        receiver$ = $('<textarea />');
-        sender$.bindInput({
-            receiver: receiver$
-        });
+        setupSenderAndReceiver(
+            $(`
+                <select>
+                    <option value="">--</option>
+                    <option value="1">option 1</option>
+                </select>
+            `),
+            $('<textarea />')
+        );
         
         sender$.val(1);
         sender$.trigger('change');
+        assert.ok( receiver$.is('textarea'), 'receiver is not set as textarea' );
         assert.equal( sender$.val(), receiver$.val() );
     }
 );
