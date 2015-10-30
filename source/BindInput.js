@@ -60,10 +60,6 @@ BindInput.prototype.setReceiver = function() {
  */
 BindInput.prototype.setListeners = function() {
     /*
-     * once on load
-     */
-    $(document).ready( $.proxy(this.matchFields, this) );
-    /*
      * and for every change
      */
     this.element$.on( 'change', $.proxy(this.matchFields, this) );

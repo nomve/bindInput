@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import BindInput from '../BindInput';
 
 export default function SelectField( element, options, logger ) {
