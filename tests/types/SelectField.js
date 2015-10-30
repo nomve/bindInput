@@ -38,7 +38,7 @@ QUnit.test(
     }
 );
 
-QUnit.only(
+QUnit.test(
     'should adjust the receiver field by value when element adjusted',
     assert => {
         assertValueChange(assert, 1);
