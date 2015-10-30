@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import BindInput from '../BindInput';
 
 export default function SelectField( element, options, logger ) {
@@ -16,7 +17,18 @@ SelectField.prototype.matchFields = function() {
     /*
      * set the same option on receiver
      */
-    this.receiver$.val( this.element$.val() );
+    var value = this.element$.val();
+    this.receiver$.val( value );
+    
+    if ( this.element$.val() !== this.receiver$.val() ) {
+        // fallback to text if option not found
+        let receiverOption$ = this.receiver$.find('option').filter(
+            function findCurrentOption() {
+                return $(this).text() === value;
+            }
+        );
+        receiverOption$.prop('selected', true);
+    }
 
     return this;
 };

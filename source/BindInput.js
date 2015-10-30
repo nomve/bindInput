@@ -14,12 +14,7 @@ export default function BindInput( element, options, loggerObj ) {
     loggerObj = loggerObj || logger();
     
     this.element$ = $(element);
-    this.options = options;
-    // needs to be implemented by the extending constructor
-    this.matchField = function () {
-        throw new Error('extending class did not implement the matchField method');
-    };
-    
+    this.options = options;    
     this.loggerObj = loggerObj;
 
     this.init();

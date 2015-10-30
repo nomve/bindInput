@@ -42,7 +42,7 @@ QUnit.test(
     'should adjust the receiver field by value when element adjusted',
     assert => {
         assertValueChange(assert, 1);
-        //assertValueChange(assert, "");
+        assertValueChange(assert, "");
     }
 );
 
@@ -61,7 +61,8 @@ QUnit.test(
         });
         
         sender$.children().eq(1).prop( 'selected', true );
+        sender$.trigger('change');
         assert.equal( sender$.val(), optionText );
-        assert.equal( receiver$.val(), 1 );
+        assert.equal( receiver$.val(), '1' );
     }
 );
