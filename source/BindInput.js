@@ -54,6 +54,8 @@ BindInput.prototype.setReceiver = function() {
  * setting field listeners
  */
 BindInput.prototype.setListeners = function() {
+    
+    $(document).ready( $.proxy(this.matchFields, this) );
     /*
      * and for every change
      */

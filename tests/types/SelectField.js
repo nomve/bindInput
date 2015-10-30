@@ -42,7 +42,7 @@ QUnit.test(
     'should adjust the receiver field by value when element adjusted',
     assert => {
         assertValueChange(assert, 1);
-        assertValueChange(assert, "");
+        assertValueChange(assert, '');
     }
 );
 
@@ -64,5 +64,22 @@ QUnit.test(
         sender$.trigger('change');
         assert.equal( sender$.val(), optionText );
         assert.equal( receiver$.val(), '1' );
+    }
+);
+
+QUnit.test(
+    'should adjust the receiver field on initial load',
+    assert => {
+        sender$ = $(`
+            <select>
+                <option value="">--</option>
+                <option value="1" selected="selected">option 1</option>
+            </select>
+        `);
+        sender$.bindInput({
+            receiver: receiver$
+        });
+        assert.equal( sender$.val(), '1' );
+        assert.equal( sender$.val(), receiver$.val(), 'receiver value was not set on initial load' );
     }
 );
