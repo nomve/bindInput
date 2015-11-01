@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import logger from './helpers/logger';
-import SelectField from './types/SelectField';
+import BindInput from './BindInput';
 
 /*
  * plugin name to register, ie $.fn[PLUGIN_NAME]
@@ -34,17 +34,15 @@ $.fn[PLUGIN_NAME] = function ( options ) {
     return this.each( function(index, element) {
 
         if ( ! $.data(element, PLUGIN_OBJECT_KEY) ) {
+            let type = element.tagName.toLowerCase();
             /*
-             * field type
-             */
-            var type = (element.tagName !== 'INPUT' ? element.tagName : element.type)
-                            .toLowerCase();
-            /*
-             * instantiate the right object
+             * instantiate the right object 
              */
             switch( type ) {
                 case 'select':
-                    pluginObj = new SelectField( element, settings, loggerObj );
+                case 'input':
+                case 'textarea':
+                    pluginObj = new BindInput( element, settings, loggerObj );
                     break;
                 case 'default':
                     loggerObj.log('Trying to set plugin on a non-supported element');
