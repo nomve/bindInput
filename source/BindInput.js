@@ -6,13 +6,14 @@ import logger from './helpers/logger';
  */
 export default function BindInput( params ) {
     
-    var element = params.element,
-        options = params.options || {},
-        loggerObj = params.loggerObj || logger();
+    var {element, options, loggerObj} = params;
 
     if ( typeof element === 'undefined' ) {
         return;   
     }
+
+    options = options || {};
+    loggerObj = loggerObj || logger();
     
     this.element$ = $(element);
     this.options = options;    
