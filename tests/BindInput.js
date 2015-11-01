@@ -28,14 +28,6 @@ QUnit.module( 'BindInput', {
 });
 
 QUnit.test(
-    'should be defined',
-    assert => {
-        assert.ok( $.isFunction(BindInput), 'module does not exist' );
-        assert.ok( typeof bindInput === 'object', 'could not instantiate BindInput object' );
-    }
-);
-
-QUnit.test(
     'should instantiate a jQuery object if a selector passed',
     assert => {
         var body$ = $('body');
