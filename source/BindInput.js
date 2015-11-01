@@ -4,14 +4,14 @@ import logger from './helpers/logger';
 /*
  * plugin constructor
  */
-export default function BindInput( params ) {
-    
-    var {element, options, loggerObj} = params;
+export default function BindInput( {element, options, loggerObj} ) {
 
     if ( typeof element === 'undefined' ) {
         return;   
     }
-
+    
+    // TODO
+    // jshint complaining about default values in destructuring params
     options = options || {};
     loggerObj = loggerObj || logger();
     

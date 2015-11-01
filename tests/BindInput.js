@@ -50,7 +50,18 @@ QUnit.test(
         bindInput.element$.trigger('change');
         assert.ok( onStub.calledOnce, 'event listener was not set' );
     }
-); 
+);
+
+QUnit.test(
+    'should properly add defaults',
+    assert => {
+        bindInput = new BindInput({
+            element: sender$
+        });
+        assert.ok( bindInput.options, 'options undefined' );
+        assert.ok( bindInput.loggerObj, 'logger undefined' );
+    }
+);
 
 function assertValueChange(assert, newValue) {
     sender$.val(newValue);
