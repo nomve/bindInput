@@ -7,8 +7,11 @@ var bindInput,
     sinonSandbox;
 
 function initBindInput(sender$, receiver) {
-    return new BindInput( sender$, {
-        receiver: receiver
+    return new BindInput({
+        element: sender$,
+        options: {
+            receiver: receiver
+        }
     });    
 }
 

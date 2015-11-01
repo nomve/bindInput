@@ -4,14 +4,15 @@ import logger from './helpers/logger';
 /*
  * plugin constructor
  */
-export default function BindInput( element, options, loggerObj ) {
+export default function BindInput( params ) {
+    
+    var element = params.element,
+        options = params.options || {},
+        loggerObj = params.loggerObj || logger();
 
     if ( typeof element === 'undefined' ) {
         return;   
     }
-
-    options = options || {};
-    loggerObj = loggerObj || logger();
     
     this.element$ = $(element);
     this.options = options;    

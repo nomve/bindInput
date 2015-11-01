@@ -42,7 +42,10 @@ $.fn[PLUGIN_NAME] = function ( options ) {
                 case 'select':
                 case 'input':
                 case 'textarea':
-                    pluginObj = new BindInput( element, settings, loggerObj );
+                    pluginObj = new BindInput({
+                        element: element,
+                        options: settings,
+                        loggerObj: loggerObj});
                     break;
                 case 'default':
                     loggerObj.log('Trying to set plugin on a non-supported element');
