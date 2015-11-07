@@ -11,7 +11,7 @@ export default function BindInput( {element, options, loggerObj} ) {
     }
     
     // TODO
-    // jshint complaining about default values in destructuring params
+    // atm jsint complaining about default values in destructuring params
     options = options || {};
     loggerObj = loggerObj || logger();
     
