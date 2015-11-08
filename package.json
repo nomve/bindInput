@@ -26,10 +26,11 @@
   },
   "homepage": "https://github.com/nomve/bindInput",
   "dependencies": {
-    "jquery": "^2.1.4"  
+    "jquery": "^2.1.4"
   },
   "devDependencies": {
-    "babel": "^5.8.29",
+    "babel-core": "^6.0.20",
+    "babel-preset-es2015": "^6.0.15",
     "babelify": "^6.4.0",
     "karma": "^0.13.14",
     "karma-browserify": "^4.4.0",
